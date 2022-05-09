@@ -7,6 +7,9 @@ public class pickup : MonoBehaviour
 {
     public ScoreHandler scoreScript;
     public AudioSource coinSound;
+    public bool isRed = false;
+    public bool isBlue = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,17 @@ public class pickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             coinSound.Play();
-            scoreScript.increaseScore();
+            if (!isRed && !isBlue)
+            {
+                scoreScript.increaseScore();
+            }
+            else if (isRed && !isBlue)
+            {
+                scoreScript.increaseScoreMore();
+            }
+            else {
+                scoreScript.increaseScoreMega();
+            }
             //spawn particles
             Destroy(this.gameObject, .3f);
         }
