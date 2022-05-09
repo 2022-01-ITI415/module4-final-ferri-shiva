@@ -13,12 +13,15 @@ public class ScoreHandler : MonoBehaviour
     public GameObject playerController;
     public GameObject winText;
     public int coinsRequired = 100;
+    public GameObject instructions;
 
     private void Start()
     {
         gameOverText.SetActive(false);
         winText.SetActive(false);
         InvokeRepeating("countDown", 1f, 1f);
+        Invoke("showInstructions", .1f);
+        Invoke("hideInstructions", 4f);
     }
 
     public void Update()
@@ -61,5 +64,13 @@ public class ScoreHandler : MonoBehaviour
     public void countDown() {
         startTime--;
         countdownText.text = "Time: " + startTime.ToString();
+    }
+
+    public void showInstructions() {
+        instructions.SetActive(true);
+    }
+    public void hideInstructions()
+    {
+        instructions.SetActive(false);
     }
 }
